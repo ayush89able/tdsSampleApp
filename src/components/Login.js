@@ -63,7 +63,8 @@ class Login extends React.Component {
                 })
             } else {
                 this.setState({
-                    notMatch: true
+                    notMatch: true,
+                    emptyError: false
                 })
             }
         } else { //if nothing is found in localstorage
