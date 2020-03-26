@@ -182,7 +182,7 @@ class EditProfile extends React.Component {
                     />
                 </div>
                 <div style={{ marginTip: '4em' }}>
-                    <Spinner spinning size="small" variant="secondary" label="Request is processing."
+                    <Spinner size="small" variant="secondary" label="Request is processing."
                         spinning={this.state.loading} inline>
                         <Button onClick={this.updateProfile}>UPDATE</Button>
                     </Spinner>

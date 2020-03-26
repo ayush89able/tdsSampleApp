@@ -99,7 +99,7 @@ class ProfileComponent extends React.Component {
                                                 </ExpandCollapse.Panel>
                                             </ExpandCollapse>
 
-                                            <Spinner spinning size="small" variant="secondary" label="Request is processing."
+                                            <Spinner size="small" variant="secondary" label="Request is processing."
                                                 spinning={this.state.contentLoading} inline>
                                                 <Button onClick={this.logout}>LOGOUT</Button>
                                             </Spinner>

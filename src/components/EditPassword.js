@@ -54,7 +54,7 @@ const EditPassword = (props) => {
                     <Text bold>New Password and Confirm Password do not match</Text>
                 </Notification>}
             <div style={{ float: 'right', marginTop: '1em' }}>
-                <Spinner spinning size="small" variant="secondary" label="Request is processing."
+                <Spinner size="small" variant="secondary" label="Request is processing."
                     spinning={loading} inline>
                     <Button onClick={savePassword}>Change Password</Button>
                 </Spinner>
