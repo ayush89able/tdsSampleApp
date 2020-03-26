@@ -16,7 +16,7 @@ const EditPassword = (props) => {
         let userDataString = localStorage.getItem('user')
         let userData = JSON.parse(userDataString)
         setUserData(userData)
-        console.log('userData', userData)
+        // console.log('userData', userData)
     }, [])
 
     const handlePassword = (e) => {
@@ -30,11 +30,11 @@ const EditPassword = (props) => {
     }
 
     const savePassword = () => {
-        if (password === confirmPassword) {
+        if (password === confirmPassword && (password !== '' && confirmPassword !== '')) {
             setError(false)
             setLoading(true)
             userData.password = password
-            console.log(userData)
+            // console.log(userData)
             setTimeout(() => {
                 setLoading(false)
                 localStorage.setItem('user', JSON.stringify(userData))
@@ -57,7 +57,7 @@ const EditPassword = (props) => {
                 </Notification>}
             {success &&
                 <Notification variant="success" copy="en">
-                    <Text bold>Password is saved successfully</Text>
+                    <Text bold>Password is updated successfully</Text>
                 </Notification>}
             <div style={{ float: 'right', marginTop: '1em' }}>
                 <Spinner size="small" variant="secondary" label="Request is processing."

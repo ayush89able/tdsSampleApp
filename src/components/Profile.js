@@ -30,21 +30,21 @@ class ProfileComponent extends React.Component {
     componentDidMount() {
         let Data = localStorage.getItem('user');
         let userData = JSON.parse(Data)
-        console.log(userData);
+        // console.log(userData);
         let name = userData.firstName + ' ' + userData.lastName;
-        console.log(name);
+        // console.log(name);
         let email = userData.email;
-        console.log(email);
+        // console.log(email);
         let gender = userData.gender;
-        console.log(gender);
+        // console.log(gender);
         let occupation = userData.occupation;
-        console.log(occupation);
+        // console.log(occupation);
         let mobile = userData.mobile;
-        console.log(mobile);
+        // console.log(mobile);
         let location = userData.location;
-        console.log(location);
+        // console.log(location);
         let address = userData.address;
-        console.log(address);
+        // console.log(address);
         this.setState({
             name, email, gender, occupation, mobile, location, address
         })

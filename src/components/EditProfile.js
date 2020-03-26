@@ -18,19 +18,19 @@ class EditProfile extends React.Component {
     myChangeHandler = (event) => {
         let name = event.target.name;
         let val = event.target.value;
-        console.log(name)
+        // console.log(name)
         if (name === 'fName') {
             this.setState({
                 'firstName': val
             }, () => {
-                console.log(this.state)
+                // console.log(this.state)
             });
         }
         else if (name === 'lName') {
             this.setState({
                 'lastName': val
             }, () => {
-                console.log(this.state)
+                // console.log(this.state)
             });
         }
         else {
@@ -38,49 +38,53 @@ class EditProfile extends React.Component {
             this.setState({
                 [name]: val
             }, () => {
-                console.log(this.state)
+                // console.log(this.state)
             });
         }
     }
 
     updateProfile = () => {
-        this.setState({
-            loading: true
-        })
-        let data = JSON.stringify(this.state)
-        localStorage.setItem('user', data)
-        setTimeout(() => {
+        if (this.state.firstName !== '' && this.state.lastName !== '' && this.state.email !== '' && this.state.mobile !== '' &&
+            this.state.gender !== '' && this.state.occupation !== '' && this.state.location !== '' && this.state.address !== '') {
             this.setState({
-                loading: false,
-                success: true
+                loading: true
             })
-        }, 2000)
-
+            let data = JSON.stringify(this.state)
+            localStorage.setItem('user', data)
+            setTimeout(() => {
+                this.setState({
+                    loading: false,
+                    success: true
+                })
+            }, 2000)
+        } else {
+            this.setState({ error: true })
+        }
     }
 
     componentDidMount() {
         let Data = localStorage.getItem('user');
         let userData = JSON.parse(Data)
-        console.log(userData);
+        // console.log(userData);
         let firstName = userData.firstName
         let lastName = userData.lastName;
         let email = userData.email;
-        console.log(email);
+        // console.log(email);
         let gender = userData.gender;
-        console.log(gender);
+        // console.log(gender);
         let occupation = userData.occupation;
-        console.log(occupation);
+        // console.log(occupation);
         let mobile = userData.mobile;
-        console.log(mobile);
+        // console.log(mobile);
         let location = userData.location;
-        console.log(location);
+        // console.log(location);
         let address = userData.address;
-        console.log(address);
+        // console.log(address);
         let password = userData.password;
         this.setState({
             firstName, lastName, email, gender, occupation, mobile, location, address, password
         }, () => {
-            console.log(this.state)
+            // console.log(this.state)
         })
 
     }
@@ -136,7 +140,7 @@ class EditProfile extends React.Component {
                 <Box tag="fieldset" between={2}>
                     <legend>
                         <Text bold size="medium">
-                            Gender:
+                            Occupation:
           </Text>
                     </legend>
                     <Radio
@@ -189,6 +193,10 @@ class EditProfile extends React.Component {
                 {this.state.success &&
                     <Notification variant="success" copy="en">
                         <Text bold>Profile is updated successfully</Text>
+                    </Notification>}
+                {this.state.error &&
+                    <Notification variant="error" copy="en">
+                        <Text bold>Profile fill all details</Text>
                     </Notification>}
                 <div style={{ marginTip: '4em' }}>
                     <Spinner size="small" variant="secondary" label="Request is processing."

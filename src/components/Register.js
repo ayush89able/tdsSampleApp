@@ -51,7 +51,7 @@ class Register extends React.Component {
 
     validateFirstName = event => {
         const value = event.target.value
-        console.log(event.target)
+        // console.log(event.target)
         if (value.length < 1) {
             this.setState({
                 statusFirstName: 'error',
@@ -67,7 +67,7 @@ class Register extends React.Component {
 
     validateLastName = event => {
         const value = event.target.value
-        console.log(event.target)
+        // console.log(event.target)
         if (value.length < 1) {
             this.setState({
                 statusLastName: 'error',
@@ -88,7 +88,7 @@ class Register extends React.Component {
         this.setState({
             [name]: val
         }, () => {
-            console.log(this.state)
+            // console.log(this.state)
         });
     }
 
@@ -105,7 +105,7 @@ class Register extends React.Component {
     }
 
     register = evt => {
-        console.log(this.state)
+        // console.log(this.state)
         if (this.state.fName !== '' &&
             this.state.lName !== '' &&
             this.state.email !== '' &&
@@ -220,7 +220,7 @@ class Register extends React.Component {
                     <Box tag="fieldset" between={2}>
                         <legend>
                             <Text bold size="medium">
-                                Gender:
+                                Occupation:
           </Text>
                         </legend>
                         <Radio
