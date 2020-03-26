@@ -27,38 +27,38 @@ class Login extends React.Component {
         this.setState({
             [name]: val
         }, () => {
-            console.log(this.state)
+            // console.log(this.state)
         });
     }
 
     onSubmit = () => {
-        console.log(this.state)
+        // console.log(this.state)
         if (this.state.email === null || this.state.password === null) {
-            console.log('enter details')
+            // console.log('enter details')
             this.setState({
                 emptyError: true
             }, () => {
-                console.log(this.state)
+                // console.log(this.state)
             })
             return;
         }
 
         let localDataString = localStorage.getItem('user');
-        console.log('localDataString', localDataString)
+        // console.log('localDataString', localDataString)
         if (localDataString !== null) {
             let localData = JSON.parse(localDataString)
-            console.log('user', localData);
-            console.log('local email', localData.email)
-            console.log(this.state.email)
-            console.log('local password', localData.password)
-            console.log(this.state.password)
+            // console.log('user', localData);
+            // console.log('local email', localData.email)
+            // console.log(this.state.email)
+            // console.log('local password', localData.password)
+            // console.log(this.state.password)
             if (this.state.email === localData.email
                 && this.state.password === localData.password) {
-                console.log('success')
+                // console.log('success')
                 this.setState({
                     succuss: true
                 }, () => {
-                    console.log(this.state)
+                    // console.log(this.state)
                     this.props.history.push("/profile");
                 })
             } else {
