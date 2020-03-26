@@ -10,6 +10,7 @@ const EditPassword = (props) => {
     const [userData, setUserData] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         let userDataString = localStorage.getItem('user')
@@ -37,7 +38,8 @@ const EditPassword = (props) => {
             setTimeout(() => {
                 setLoading(false)
                 localStorage.setItem('user', JSON.stringify(userData))
-            }, 4000)
+                setSuccess(true)
+            }, 3000)
         } else {
             setError(true)
         }
@@ -52,6 +54,10 @@ const EditPassword = (props) => {
             {error &&
                 <Notification variant="error" copy="en">
                     <Text bold>New Password and Confirm Password do not match</Text>
+                </Notification>}
+            {success &&
+                <Notification variant="success" copy="en">
+                    <Text bold>Password is saved successfully</Text>
                 </Notification>}
             <div style={{ float: 'right', marginTop: '1em' }}>
                 <Spinner size="small" variant="secondary" label="Request is processing."

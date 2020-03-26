@@ -9,6 +9,8 @@ import Tooltip from '@tds/core-tooltip'
 import TextArea from '@tds/core-text-area'
 import Button from '@tds/core-button'
 import Spinner from '@tds/core-spinner'
+import Notification from '@tds/core-notification'
+
 class EditProfile extends React.Component {
     state = {
         saving: false
@@ -47,9 +49,12 @@ class EditProfile extends React.Component {
         })
         let data = JSON.stringify(this.state)
         localStorage.setItem('user', data)
-        setTimeout(() => this.setState({
-            loading: false
-        }), 2000)
+        setTimeout(() => {
+            this.setState({
+                loading: false,
+                success: true
+            })
+        }, 2000)
 
     }
 
@@ -181,6 +186,10 @@ class EditProfile extends React.Component {
                         value={this.state.address}
                     />
                 </div>
+                {this.state.success &&
+                    <Notification variant="success" copy="en">
+                        <Text bold>Profile is updated successfully</Text>
+                    </Notification>}
                 <div style={{ marginTip: '4em' }}>
                     <Spinner size="small" variant="secondary" label="Request is processing."
                         spinning={this.state.loading} inline>
