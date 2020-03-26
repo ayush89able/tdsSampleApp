@@ -46,26 +46,33 @@ const EditPassword = (props) => {
     }
 
     return (
-        <div style={{ marginRight: '2em' }}>
-            <Input type="password" label="New Password" onChange={handlePassword} />
-            <div style={{ marginTop: '1em' }}>
+        <div style={{ position: 'relative', top: '1.5em', paddingLeft: '2em', marginRight: '2em', marginBottom: '2em' }}>
+            <div style={{ marginTop: '1em', marginRight: '2em' }}>
+                <Input type="password" label="New Password" onChange={handlePassword} />
+            </div>
+            <div style={{ marginTop: '1em', marginRight: '2em' }}>
                 <Input type="password" label="Confirm Password" onChange={handleConfirmPassword} />
             </div>
-            {error &&
+
+            {
+                error &&
                 <Notification variant="error" copy="en">
                     <Text bold>New Password and Confirm Password do not match</Text>
-                </Notification>}
-            {success &&
+                </Notification>
+            }
+            {
+                success &&
                 <Notification variant="success" copy="en">
                     <Text bold>Password is updated successfully</Text>
-                </Notification>}
-            <div style={{ float: 'right', marginTop: '1em' }}>
+                </Notification>
+            }
+            <div style={{ float: 'right', marginTop: '1em', marginBottom: '2em' }}>
                 <Spinner size="small" variant="secondary" label="Request is processing."
                     spinning={loading} inline>
                     <Button onClick={savePassword}>Change Password</Button>
                 </Spinner>
             </div>
-        </div>
+        </div >
     )
 }
 export default EditPassword

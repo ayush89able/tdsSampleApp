@@ -4,6 +4,8 @@ import Register from './components/Register'
 import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
+import EditPassword from './components/EditPassword';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -24,6 +26,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
+              <Route path="/forgotPassword" component={EditPassword} />
             </Switch>
           </div>
         </Router>

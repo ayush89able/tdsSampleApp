@@ -74,6 +74,10 @@ class Login extends React.Component {
         }
     }
 
+    forgotPassword = () => {
+        this.props.history.push('/forgotPassword');
+    }
+
     render() {
         return (
             <div style={{ position: 'relative', top: '1.2em', paddingLeft: '2em', paddingRight: '4em' }}>
@@ -94,6 +98,9 @@ class Login extends React.Component {
                         </Tooltip>
                         }
                     />
+                    <span style={{ width: '12em', float: 'right' }}>
+                        <Button onClick={this.forgotPassword}>Forgot Password</Button>
+                    </span>
                     <Button onClick={this.onSubmit}>Submit</Button>
                     {!this.state.registerd ?
                         <Notification variant="error" copy="en">
