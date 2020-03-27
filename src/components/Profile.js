@@ -68,7 +68,7 @@ class ProfileComponent extends React.Component {
                                         <Box between={3}>
                                             <div style={{ margin: 'auto' }}>
                                                 <Heading level="h2" >
-                                                        Profile
+                                                    Profile
                                                 </Heading>
                                             </div>
                                             <div style={{ display: 'block', margin: 'auto' }}>
@@ -95,7 +95,7 @@ class ProfileComponent extends React.Component {
                                                 <ExpandCollapse.Panel id="editprofile" header="Edit Profile">
                                                     <EditProfile />
                                                 </ExpandCollapse.Panel>
-                                                <ExpandCollapse.Panel id="editPassword" header="Edit Password">
+                                                <ExpandCollapse.Panel id="editPassword" header="Reset Password">
                                                     <EditPassword />
                                                 </ExpandCollapse.Panel>
                                             </ExpandCollapse>
