@@ -7,7 +7,6 @@ import Paragraph from '@tds/core-paragraph'
 import Button from '@tds/core-button'
 import Spinner from '@tds/core-spinner'
 import Image from '@tds/core-image'
-import { Profile, IconButton } from '@tds/core-interactive-icon'
 import { ExpandCollapse } from '@tds/core-expand-collapse'
 
 import EditProfile from './EditProfile'
@@ -68,7 +67,9 @@ class ProfileComponent extends React.Component {
                                     <Box between={4}>
                                         <Box between={3}>
                                             <div style={{ margin: 'auto' }}>
-                                                <Heading level="h2" ><IconButton icon={Profile} a11yText='profile icon' />Profile Page</Heading>
+                                                <Heading level="h2" >
+                                                        Profile
+                                                </Heading>
                                             </div>
                                             <div style={{ display: 'block', margin: 'auto' }}>
                                                 <Image

@@ -98,9 +98,9 @@ class Login extends React.Component {
                         </Tooltip>
                         }
                     />
-                    <span style={{ width: '12em', float: 'right' }}>
+                    <div style={{ width: '12em', float: 'right' }}>
                         <Button onClick={this.forgotPassword}>Forgot Password</Button>
-                    </span>
+                    </div>
                     <Button onClick={this.onSubmit}>Submit</Button>
                     {!this.state.registerd ?
                         <Notification variant="error" copy="en">

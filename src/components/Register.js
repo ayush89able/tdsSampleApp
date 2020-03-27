@@ -293,7 +293,7 @@ class Register extends React.Component {
                     </div>
                     {alert}
                     <br />
-                    <Button style={{ width: '100%' }} onClick={this.register}>Register</Button>
+                    <Button onClick={this.register}>Register</Button>
 
                 </Box>
             </div>

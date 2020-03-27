@@ -93,7 +93,7 @@ class EditProfile extends React.Component {
     render() {
         return (
             <div style={{ marginRight: '1em' }}>
-                <div style={{ textAlign: 'center' }}><Heading>Update Profile</Heading></div>
+                <div style={{ textAlign: 'center' }}><Heading level='h2'>Update Profile</Heading></div>
                 <Input label="First name" type="text" name='fName' id='first name'
                     hint='Please type your firstName'
                     hintPosition='below'
