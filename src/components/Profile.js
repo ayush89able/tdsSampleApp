@@ -112,43 +112,6 @@ class ProfileComponent extends React.Component {
 
                             </Box>
                         </FlexGrid.Col>
-
-                        {/* <FlexGrid.Col>
-            <Box vertical={4}>
-               <Card>
-                <Box between={4}>
-                  <Box between={3}>
-                    <Heading level="h2">Need to Register?</Heading>
-                    <Paragraph>
-                      Register here 
-                    </Paragraph>
-                  </Box>
-                  <div>
-                    <Link to="/register"><Button>Register</Button></Link>
-                  </div>
-                </Box>
-              </Card>
-
-            </Box>
-          </FlexGrid.Col>*/}
-                        {/*<FlexGrid.Col>
-            <Box vertical={4}>
-               <Card>
-                <Box between={4}>
-                  <Box between={3}>
-                    <Heading level="h2">Need to Login?</Heading>
-                    <Paragraph>
-                      Login here
-                    </Paragraph>
-                  </Box>
-
-                  <div>
-                     <Link to="/login"><Button>Login</Button></Link>
-                  </div>
-                </Box>
-              </Card>
-            </Box>
-          </FlexGrid.Col>*/}
                     </FlexGrid.Row>
                 </FlexGrid>
 
