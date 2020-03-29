@@ -4,6 +4,7 @@ import Register from './components/Register'
 import Profile from './components/Profile'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
+import NotFound from './components/NotFound'
 import EditPassword from './components/EditPassword';
 
 import {
@@ -27,6 +28,9 @@ class App extends Component {
               <Route path="/register" component={Register} />
               <Route path="/profile" component={Profile} />
               <Route path="/forgotPassword" component={EditPassword} />
+              {/* <Route path='*' render={(props) => <p style={{ marginTop: '3em' }}>Not Found</p>} /> */}
+              <Route path='*' component={NotFound} />
+
             </Switch>
           </div>
         </Router>

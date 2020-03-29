@@ -16,7 +16,7 @@ class Login extends React.Component {
             email: null,
             password: null,
             emptyError: false,
-            succuss: false,
+            succuss: null,
             registerd: true
         }
     }
@@ -32,9 +32,7 @@ class Login extends React.Component {
     }
 
     onSubmit = () => {
-        // console.log(this.state)
         if (this.state.email === null || this.state.password === null) {
-            // console.log('enter details')
             this.setState({
                 emptyError: true
             }, () => {
@@ -42,26 +40,27 @@ class Login extends React.Component {
             })
             return;
         }
+        let usersDataString = localStorage.getItem('usersData');
+        if (usersDataString !== null) {
+            let usersDataObj = JSON.parse(usersDataString)
+            let users = usersDataObj.users;
+            for (let i = 0; i < users.length; i++) {
 
-        let localDataString = localStorage.getItem('user');
-        // console.log('localDataString', localDataString)
-        if (localDataString !== null) {
-            let localData = JSON.parse(localDataString)
-            // console.log('user', localData);
-            // console.log('local email', localData.email)
-            // console.log(this.state.email)
-            // console.log('local password', localData.password)
-            // console.log(this.state.password)
-            if (this.state.email === localData.email
-                && this.state.password === localData.password) {
-                // console.log('success')
-                this.setState({
-                    succuss: true
-                }, () => {
-                    // console.log(this.state)
-                    this.props.history.push("/profile");
-                })
-            } else {
+                if (this.state.email === users[i].email
+                    && this.state.password === users[i].password) {
+                    console.log('success')
+                    let logedInUser = JSON.stringify(users[i])
+                    localStorage.setItem('user', logedInUser)
+                    this.setState({
+                        succuss: true
+                    }, () => {
+                        console.log(this.state)
+                        this.props.history.push("/profile");
+                    })
+                }
+            }
+
+            if (this.state.succuss == false) {
                 this.setState({
                     notMatch: true,
                     emptyError: false
@@ -101,7 +100,6 @@ class Login extends React.Component {
                     <div style={{ width: '12em', float: 'right' }}>
                         <Button onClick={this.forgotPassword}>Forgot Password</Button>
                     </div>
-                    <Button onClick={this.onSubmit}>Submit</Button>
                     {!this.state.registerd ?
                         <Notification variant="error" copy="en">
                             <Text bold>User with these credentials is not found, Please register and try again </Text>
@@ -117,6 +115,7 @@ class Login extends React.Component {
                             <Text bold>Please Check Entered Details Something is wrong  </Text>
                         </Notification>
                     }
+                    <Button onClick={this.onSubmit}>Submit</Button>
                 </Box>
             </div>
         )

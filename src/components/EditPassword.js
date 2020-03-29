@@ -5,9 +5,11 @@ import Spinner from '@tds/core-spinner'
 import Notification from '@tds/core-notification'
 import Text from '@tds/core-text'
 const EditPassword = (props) => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
     const [userData, setUserData] = useState('');
+    const [usersData, setUsersData] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -15,8 +17,13 @@ const EditPassword = (props) => {
     useEffect(() => {
         let userDataString = localStorage.getItem('user')
         let userData = JSON.parse(userDataString)
+        let usersDataString = localStorage.getItem('usersData');
+        let usersData = JSON.parse(usersDataString)
+        setUsersData(usersData)
         setUserData(userData)
-        // console.log('userData', userData)
+        let email = userData.email;
+        setEmail(email)
+        console.log(props)
     }, [])
 
     const handlePassword = (e) => {
@@ -33,11 +40,29 @@ const EditPassword = (props) => {
         if (password === confirmPassword && (password !== '' && confirmPassword !== '')) {
             setError(false)
             setLoading(true)
-            userData.password = password
-            // console.log(userData)
+            userData.password = password;
+            localStorage.setItem('user', JSON.stringify(userData));
+
+
+            let index = null;
+            let users = usersData.users;
+            for (let i = 0; i < users.length; i++) {
+                if (email === users[i].email) {
+                    index = i
+                }
+            }
+            console.log(index)
+            console.log(users)
+            users[index].password = password
+            let newUsers = {
+                users: users
+            }
+            let newUsersString = JSON.stringify(newUsers)
+            localStorage.setItem('usersData', newUsersString)
+
             setTimeout(() => {
                 setLoading(false)
-                localStorage.setItem('user', JSON.stringify(userData))
+
                 setSuccess(true)
             }, 3000)
         } else {

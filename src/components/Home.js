@@ -27,7 +27,7 @@ const Home = props => {
                                         <Heading level="h2">Need to Register?</Heading>
                                         <Paragraph>
                                             Register here
-                    </Paragraph>
+                                        </Paragraph>
                                     </Box>
                                     <div>
                                         <Link to="/register"><Button>Register</Button></Link>

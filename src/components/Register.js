@@ -85,11 +85,20 @@ class Register extends React.Component {
     myChangeHandler = (event) => {
         let name = event.target.name;
         let val = event.target.value;
-        this.setState({
-            [name]: val
-        }, () => {
-            // console.log(this.state)
-        });
+        if (name == 'fName' || name == 'lName') {
+            this.setState({
+                [name]: val.toUpperCase()
+            }, () => {
+                // console.log(this.state)
+            });
+        } else {
+            this.setState({
+                [name]: val
+            }, () => {
+                // console.log(this.state)
+            });
+        }
+
     }
 
     // onChange = evt => {
@@ -131,6 +140,28 @@ class Register extends React.Component {
             localStorage.setItem(
                 'user', JSON.stringify(user)
             )
+            let storedUsers = localStorage.getItem('usersData')
+            if (storedUsers != undefined) {
+                let storedUsersObj = JSON.parse(storedUsers)
+                console.log('storedUsersObj', storedUsersObj)
+                let alreadyUsers = storedUsersObj.users
+                alreadyUsers.push(user)
+                let userData = {
+                    users: alreadyUsers
+                }
+                localStorage.setItem('usersData', JSON.stringify(userData))
+            }
+            else {
+                let a = [];
+                a.push(user)
+                console.log(a)
+                let usersData = {
+                    users: a
+                }
+                localStorage.setItem('usersData', JSON.stringify(usersData))
+            }
+
+
             this.props.history.push('/login')
         }
         else {
@@ -248,7 +279,7 @@ class Register extends React.Component {
                             },
                             {
                                 text: 'Uttar Pradesh',
-                                options: [{ text: 'Noida', value: 'Noida' }, { text: 'Lucknow', value: 'Lucknow' }],
+                                options: [{ text: 'Noida', value: 'Noida' }, { text: 'Lucknow', value: 'Lucknow' }, { text: 'Ghaziabad', value: 'Ghaziabad' }],
                             },
                             {
                                 text: 'Maharashtra',

@@ -12,9 +12,13 @@ import Spinner from '@tds/core-spinner'
 import Notification from '@tds/core-notification'
 
 class EditProfile extends React.Component {
-    state = {
-        saving: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            saving: false
+        };
+    }
+
     myChangeHandler = (event) => {
         let name = event.target.name;
         let val = event.target.value;
@@ -51,18 +55,38 @@ class EditProfile extends React.Component {
             })
             let data = JSON.stringify(this.state)
             localStorage.setItem('user', data)
+
+            let index = null;
+            let usersDataString = localStorage.getItem('usersData');
+            let usersDataObj = JSON.parse(usersDataString)
+            let users = usersDataObj.users;
+            for (let i = 0; i < users.length; i++) {
+                if (this.state.email === users[i].email
+                    && this.state.password === users[i].password) {
+                    index = i
+                }
+            }
+            users[index] = this.state;
+            let newUsers = {
+                users: users
+            }
+            let newUsersString = JSON.stringify(newUsers)
+            localStorage.setItem('usersData', newUsersString)
+
+
             setTimeout(() => {
                 this.setState({
                     loading: false,
                     success: true
                 })
-            }, 2000)
+            }, 4000)
         } else {
             this.setState({ error: true })
         }
     }
 
     componentDidMount() {
+        console.log(this.props)
         let Data = localStorage.getItem('user');
         let userData = JSON.parse(Data)
         // console.log(userData);
@@ -106,11 +130,11 @@ class EditProfile extends React.Component {
                     value={this.state.lastName}
                     onChange={this.myChangeHandler} />
 
-                <Input label="Email" type="email" name='email'
+                {/* <Input label="Email" type="email" name='email'
                     hint='Please type your email id'
                     hintPosition='below'
                     onChange={this.myChangeHandler}
-                    value={this.state.email} />
+                    value={this.state.email} /> */}
 
                 <Input type="tel" label="Mobile phone" name='mobile' onChange={this.myChangeHandler} pattern="[0-9]{10}"
                     maxLength="10" value={this.state.mobile} />
@@ -171,7 +195,7 @@ class EditProfile extends React.Component {
                         },
                         {
                             text: 'Uttar Pradesh',
-                            options: [{ text: 'Noida', value: 'Noida' }, { text: 'Lucknow', value: 'Lucknow' }],
+                            options: [{ text: 'Noida', value: 'Noida' }, { text: 'Lucknow', value: 'Lucknow' }, { text: 'Ghaziabad', value: 'Ghaziabad' }],
                         },
                         {
                             text: 'Maharashtra',

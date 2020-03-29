@@ -23,12 +23,15 @@ class ProfileComponent extends React.Component {
             mobile: '',
             occupation: '',
             contentLoading: false,
+            userData: null,
+            usersData: null
         }
     }
 
     componentDidMount() {
         let Data = localStorage.getItem('user');
         let userData = JSON.parse(Data)
+        console.log(userData)
         // console.log(userData);
         let name = userData.firstName + ' ' + userData.lastName;
         // console.log(name);
@@ -44,18 +47,23 @@ class ProfileComponent extends React.Component {
         // console.log(location);
         let address = userData.address;
         // console.log(address);
+        let usersDataString = localStorage.getItem('usersData');
+        let usersData = JSON.parse(usersDataString)
+        console.log(usersData)
         this.setState({
-            name, email, gender, occupation, mobile, location, address
+            name, email, gender, occupation, mobile, location, address, userData, usersData
+        }, () => {
+            console.log(this.state)
         })
+
     }
 
     logout = () => {
-        localStorage.clear();
+        localStorage.removeItem('user')
         this.setState({ contentLoading: true })
-        setTimeout(() => this.props.history.push('/register'), 2000)
-
-
+        setTimeout(() => this.props.history.push('/login'), 2000)
     }
+
     render() {
         return (
             <div style={{ position: 'relative', top: '1.2em' }}>
@@ -93,10 +101,10 @@ class ProfileComponent extends React.Component {
 
                                             <ExpandCollapse tag="h2">
                                                 <ExpandCollapse.Panel id="editprofile" header="Edit Profile">
-                                                    <EditProfile />
+                                                    <EditProfile userData={this.state.userData} usersData={this.state.usersData} />
                                                 </ExpandCollapse.Panel>
                                                 <ExpandCollapse.Panel id="editPassword" header="Reset Password">
-                                                    <EditPassword />
+                                                    <EditPassword userData={this.state.userData} usersData={this.state.usersData} />
                                                 </ExpandCollapse.Panel>
                                             </ExpandCollapse>
 
@@ -114,7 +122,6 @@ class ProfileComponent extends React.Component {
                         </FlexGrid.Col>
                     </FlexGrid.Row>
                 </FlexGrid>
-
             </div>
         )
     }
